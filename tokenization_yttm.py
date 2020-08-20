@@ -71,6 +71,8 @@ class YTTMTransformersTokenizer(PreTrainedTokenizer):
         elif os.path.isfile(os.path.join(vocab_file, VOCAB_FILES_NAMES["vocab_file"])):
             vocab_file = os.path.join(vocab_file, VOCAB_FILES_NAMES["vocab_file"])
             self.bpe = yttm.BPE(vocab_file, n_threads=-1)
+        else:
+            raise OSError("vocab_file should be a path to model file or dir with encoder.model")
         self.vocab_file = vocab_file
         self.decoder = self.bpe
         self.cache = {}
