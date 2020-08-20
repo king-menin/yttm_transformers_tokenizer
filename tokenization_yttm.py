@@ -88,7 +88,9 @@ class YTTMTransformersTokenizer(PreTrainedTokenizer):
         return dict(self.vocab)
 
     def save_vocabulary(self, save_directory: str):
-        pass
+        vocab_file = os.path.join(save_directory, VOCAB_FILES_NAMES['vocab_file'])
+        os.system('cp {} {}'.format(self.vocab_file, vocab_file))
+        return (vocab_file, )
 
     def _tokenize(self, text: str, **kwargs):
         """Converts a string in a sequence of tokens (string), using the tokenizer.
